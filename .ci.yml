@@ -51,8 +51,13 @@ steps:
     commands:
       - source $SRCENV/.cargo/env
       - export RUSTUP_HOME=$SRCENV/.rustup
+      - rm -r $CARGO_TARGET_DIR
       - make bundle
-      - $TOOLDIR/hub release edit $($TOOLDIR/gfind . -type f -name "*.zip" -printf "-a %p ") -m "" "$VERSION"
+      - touch server/build.rs
+      - touch sky-macros/src/lib.rs
+      - touch libsky/src/lib.rs
+      - touch server/src/main.rs
+      - make bundle
     when:
       event:
         - tag
