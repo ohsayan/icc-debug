@@ -30,8 +30,7 @@ steps:
       - export CARGO_LOG=cargo::core::compiler::fingerprint=info
       - cargo clean
       - cargo build --verbose
-      - touch server/build.rs sky-macros/src/lib.rs libstress/src/lib.rs libsky/src/lib.rs stress-test/src/main.rs sky-bench/src/main.rs cli/src/main.rs
-      - cargo build --verbose
+      - find target -type f -exec sha256sum {} \;
     when:
       event:
         exclude:
