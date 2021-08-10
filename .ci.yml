@@ -31,7 +31,7 @@ steps:
       - export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
       - cargo clean
       - cargo build --verbose
-      - find $CARGO_TARGET_DIR -type f -exec sha256sum {} \;
+      - find $CARGO_TARGET_DIR -type f -exec md5 {} \;
     when:
       event:
         exclude:
