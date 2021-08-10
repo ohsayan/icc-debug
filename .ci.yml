@@ -29,9 +29,8 @@ steps:
       - export RUSTUP_HOME=$SRCENV/.rustup
       - export CARGO_LOG=cargo::core::compiler::fingerprint=info
       - export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-      - cargo clean
-      - cargo build --verbose
       - find $CARGO_TARGET_DIR -type f -exec md5 {} \;
+      - cargo build --verbose
     when:
       event:
         exclude:
