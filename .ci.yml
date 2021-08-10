@@ -28,7 +28,6 @@ steps:
       - source $SRCENV/.cargo/env
       - export RUSTUP_HOME=$SRCENV/.rustup
       - export CARGO_LOG=cargo::core::compiler::fingerprint=info
-      - make test
     when:
       event:
         exclude:
@@ -51,7 +50,7 @@ steps:
     commands:
       - source $SRCENV/.cargo/env
       - export RUSTUP_HOME=$SRCENV/.rustup
-      - rm -r $CARGO_TARGET_DIR
+      - cargo clean
       - make bundle
       - touch server/build.rs
       - touch sky-macros/src/lib.rs
