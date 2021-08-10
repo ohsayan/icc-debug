@@ -28,6 +28,7 @@ steps:
       - source $SRCENV/.cargo/env
       - export RUSTUP_HOME=$SRCENV/.rustup
       - export CARGO_LOG=cargo::core::compiler::fingerprint=info
+      - export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
       - cargo clean
       - cargo build --verbose
       - find target -type f -exec sha256sum {} \;
