@@ -22,9 +22,12 @@ steps:
         from_secret: srcenv
       CARGO_HOME:
         from_secret: cargohome
+      CARGO_TARGET_DIR:
+        from_secret: cargotarget
     commands:
       - source $SRCENV/.cargo/env
       - export RUSTUP_HOME=$SRCENV/.rustup
+      - export CARGO_LOG=cargo::core::compiler::fingerprint=info
       - make test
     when:
       event:
@@ -36,6 +39,8 @@ steps:
         from_secret: srcenv
       CARGO_HOME:
         from_secret: cargohome
+      CARGO_TARGET_DIR:
+        from_secret: cargotarget
       TARGET: aarch64-apple-darwin
       VERSION: ${DRONE_TAG}
       ARTIFACT: aarch64-apple-darwin
