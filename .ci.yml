@@ -29,7 +29,10 @@ steps:
       - export RUSTUP_HOME=$SRCENV/.rustup
       - export CARGO_LOG=cargo::core::compiler::fingerprint=info
       - export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-      - find $CARGO_TARGET_DIR -type f -exec md5 {} \;
+      - cargo clean
+      - cargo build --verbose
+      - touch server/build.rs sky-macros/src/lib.rs libstress/src/lib.rs libsky/src/lib.rs stress-test/src/main.rs sky-bench/src/main.rs cli/src/main.rs
+      - source $SRCENV/.cargo/env
       - cargo build --verbose
     when:
       event:
