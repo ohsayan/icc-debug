@@ -29,12 +29,12 @@ steps:
       - export RUSTUP_HOME=$SRCENV/.rustup
       - export CARGO_LOG=cargo::core::compiler::fingerprint=info
       - cargo clean
-      - make bundle
+      - make build
       - touch server/build.rs
       - touch sky-macros/src/lib.rs
       - touch libsky/src/lib.rs
       - touch server/src/main.rs
-      - make bundle
+      - make build
     when:
       event:
         exclude:
